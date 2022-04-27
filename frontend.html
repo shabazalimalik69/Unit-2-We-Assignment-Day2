@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #heading{
+            text-align: center;
+            font-weight: bolder;
+        }
+         #container{
+             width:95%;
+             height:450px;
+             display: grid;
+             grid-template-columns: repeat(4,1fr);
+             grid-template-rows: auto;
+             column-gap: 20px;
+             margin: auto;
+         }
+         #container>div{
+             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+             border-radius: 10px;
+         }
+         #image{
+             width: 100%;
+             border-radius: 10px;
+         }
+         p+img{
+             width:40%;
+             height: 50px;
+             display: block;
+             margin: auto;
+             margin-top: -20px;
+         }
+         h2{
+             text-align: center;
+             font-size: 30px;
+         }
+         p{
+             text-align: center;
+             margin-top: -10px;
+             color: grey;
+             font-size: 20px;
+         }
+         div>img:nth-child(1){
+             width: 100%;
+             border-radius: 10px;
+         }
+    </style>
+</head>
+<body>
+    <h1>Frontend</h1>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+     var InvestArray = JSON.parse(localStorage.getItem("InvestData"));
+     console.log(InvestArray);
+
+
+     InvestArray.forEach(function(el){
+        var box = document.createElement("div");
+        var investorImg = document.createElement("img");
+        investorImg.setAttribute("src", el.InvestImg);
+        var investorName = document.createElement("h2");
+        investorName.innerText = el.InvestName;
+        var designation = document.createElement("p");
+        designation.innerText = el.InvestDesig;
+        var logoimg = document.createElement("img");
+        logoimg.setAttribute("src",el.InvestLogo);
+        box.append(investorImg,investorName,designation,logoimg);
+        document.querySelector("#container").append(box);
+    })
+</script>
